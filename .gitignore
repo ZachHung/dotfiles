@@ -1,0 +1,7 @@
+*
+!fish
+!fish/**
+!tabtab
+!tabtab/**
+!starship.toml
+!.gitignore
