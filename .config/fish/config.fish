@@ -9,7 +9,7 @@ set fish_greeting (curl -s -m 0.35 "wttr.in/?format=3")
 set -U winhost (grep -G '^nameserver' /etc/resolv.conf | awk '{print $2}')
 
 # nvm default version
-set -U nvm_default_version lts/hydrogen
+set -U nvm_default_version lts/iron
 
 # fzf default options
 set -gx fzf_preview_dir_cmd "eza -l --color=always --group-directories-first --icons"
@@ -30,13 +30,15 @@ set -gx LS_COLORS (vivid generate nord)
 
 # Abbreviation
 abbr -a ff fzf
-abbr -a nf 'nano $(fzf)'
+abbr -a vf 'vim $(fzf)'
+abbr -a vi vim
 abbr -a cc clear
 abbr -a -- g git
 abbr -a -- pn pnpm
 abbr -a -- yr yarn
 abbr -a -- np npm
 abbr -a .. 'cd ..'
+abbr -a ... 'cd ../..'
 abbr -a ls 'eza  -l --color=always --group-directories-first --icons' # preferred listing
 abbr -a la "eza -a --color=always --group-directories-first --icons" # all files and dirs
 abbr -a ll 'eza -l --color=always --group-directories-first --icons' # long format
@@ -48,7 +50,7 @@ abbr -a cd z
 abbr -a cdi zi
 
 # Utilities
-starship init fish | source
+# starship init fish | source
 zoxide init --cmd cd fish | source
 
 
