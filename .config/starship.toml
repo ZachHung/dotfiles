@@ -33,7 +33,7 @@ $nix_shell\
 $azure\
 $docker_context\
 $kubernetes\
-[](fg:mauve)\
+[](fg:mauve)\
 $line_break\
 $shell\
 $character"""
@@ -108,7 +108,7 @@ modified = "~"
 renamed = "»"
 untracked = "+"
 staged = "●"
-stashed = "ﮅ "
+stashed = "* "
 style = 'bg:peach fg:#000000'
 
 [cmd_duration]
