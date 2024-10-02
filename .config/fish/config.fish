@@ -6,7 +6,7 @@ end
 set fish_greeting (curl -s -m 0.35 "wttr.in/?format=3")
 
 # window localhost
-set -U winhost (grep -G '^nameserver' /etc/resolv.conf | awk '{print $2}')
+set -gx winhost $hostname.local
 
 # nvm default version
 set -U nvm_default_version lts/iron
