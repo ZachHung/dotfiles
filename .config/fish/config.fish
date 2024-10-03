@@ -13,14 +13,14 @@ set -U nvm_default_version lts/iron
 
 # fzf default options
 set -gx fzf_preview_dir_cmd "eza -l --color=always --group-directories-first --icons"
-set -gx FZF_DEFAULT_COMMAND 'fdfind --type file --color=always'
+set -gx FZF_DEFAULT_COMMAND 'fd --type file --color=always'
 set -gx FZF_CTRL_T_COMMAND FZF_DEFAULT_COMMAND
 set -gx FZF_DEFAULT_OPTS "
     --ansi
     --cycle --layout=reverse --border --height=90% --preview-window=wrap --marker='*'
 "
 
-set -gx MANPAGER "sh -c 'col -bx | batcat -l man -p'"
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # bat default options
 set -gx BAT_THEME ansi
@@ -39,7 +39,7 @@ abbr -a -- yr yarn
 abbr -a -- np npm
 abbr -a .. 'cd ..'
 abbr -a ... 'cd ../..'
-abbr -a ls 'eza  -l --color=always --group-directories-first --icons' # preferred listing
+abbr -a ls 'eza --color=always --group-directories-first --icons' # preferred listing
 abbr -a la "eza -a --color=always --group-directories-first --icons" # all files and dirs
 abbr -a ll 'eza -l --color=always --group-directories-first --icons' # long format
 abbr -a lt 'eza -aT --color=always --group-directories-first --icons' # tree listing
@@ -81,3 +81,10 @@ set -U fish_pager_color_progress brwhite '--background=cyan'
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+
+# pnpm
+set -gx PNPM_HOME "/home/zachhung/.pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
