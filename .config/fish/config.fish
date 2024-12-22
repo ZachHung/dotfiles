@@ -53,7 +53,6 @@ abbr -a cdi zi
 # starship init fish | source
 zoxide init --cmd cd fish | source
 
-
 # Color scheme
 set -U fish_color_error 81a1c1 # #81a1c1 default color when typing suggestion
 set -U fish_color_autosuggestion 6B7280 # #6B7280 suggestion
