@@ -31,7 +31,7 @@ set -gx LS_COLORS (vivid generate nord)
 # Abbreviation
 abbr -a ff fzf
 abbr -a vf 'vim $(fzf)'
-abbr -a vi vim
+abbr -a v vim
 abbr -a cc clear
 abbr -a -- g git
 abbr -a -- pn pnpm
@@ -77,10 +77,6 @@ set -U fish_pager_color_completion 81a1c1 # #81a1c1
 set -U fish_pager_color_description yellow
 set -U fish_pager_color_prefix white --bold --underline
 set -U fish_pager_color_progress brwhite '--background=cyan'
-
-# tabtab source for packages
-# uninstall by removing these lines
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
 # pnpm
 set -gx PNPM_HOME "/home/zachhung/.pnpm"
