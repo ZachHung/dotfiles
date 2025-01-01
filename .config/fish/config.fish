@@ -6,7 +6,7 @@ end
 set fish_greeting (curl -s -m 0.35 "wttr.in/?format=3")
 
 # window localhost
-set -gx winhost $hostname.local
+#set -gx winhost $hostname.local
 
 # nvm default version
 set -U nvm_default_version lts/iron
@@ -37,6 +37,8 @@ abbr -a -- g git
 abbr -a -- pn pnpm
 abbr -a -- yr yarn
 abbr -a -- np npm
+abbr -a dk docker
+abbr -a dkc docker-compose
 abbr -a .. 'cd ..'
 abbr -a ... 'cd ../..'
 abbr -a ls 'eza --color=always --group-directories-first --icons' # preferred listing
