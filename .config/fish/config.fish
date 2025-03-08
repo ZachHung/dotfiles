@@ -20,7 +20,7 @@ set -gx FZF_DEFAULT_OPTS "
     --cycle --layout=reverse --border --height=90% --preview-window=wrap --marker='*'
 "
 
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
 # bat default options
 set -gx BAT_THEME ansi
@@ -84,6 +84,7 @@ set -U fish_pager_color_progress brwhite '--background=cyan'
 
 # fzf.fish
 fzf_configure_bindings --directory=\cf --variables=\e\cv
+set fzf_diff_highlighter delta 
 
 # pnpm
 set -gx PNPM_HOME "/home/zachhung/.pnpm"
