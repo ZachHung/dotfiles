@@ -28,6 +28,11 @@ set -gx BAT_THEME ansi
 # set LS_COLORS using vivid
 set -gx LS_COLORS (vivid generate nord)
 
+# Aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 # Abbreviation
 abbr -a ff fzf
 abbr -a vf 'vim $(fzf)'
@@ -39,8 +44,6 @@ abbr -a -- yr yarn
 abbr -a -- np npm
 abbr -a dk docker
 abbr -a dkc docker-compose
-abbr -a .. 'cd ..'
-abbr -a ... 'cd ../..'
 abbr -a ls 'eza --color=always --group-directories-first --icons' # preferred listing
 abbr -a la "eza -a --color=always --group-directories-first --icons" # all files and dirs
 abbr -a ll 'eza -l --color=always --group-directories-first --icons' # long format
@@ -78,6 +81,9 @@ set -U fish_pager_color_completion 81a1c1 # #81a1c1
 set -U fish_pager_color_description yellow
 set -U fish_pager_color_prefix white --bold --underline
 set -U fish_pager_color_progress brwhite '--background=cyan'
+
+# fzf.fish
+fzf_configure_bindings --directory=\cf --variables=\e\cv
 
 # pnpm
 set -gx PNPM_HOME "/home/zachhung/.pnpm"
