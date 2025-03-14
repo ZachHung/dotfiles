@@ -1,94 +1,83 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-end
 
-# Welcome prompt
-set fish_greeting (curl -s -m 0.35 "wttr.in/?format=3")
+    # Color scheme
+    set fish_color_error 81a1c1 # #81a1c1 default color when typing suggestion
+    set fish_color_autosuggestion 6B7280 # #6B7280 suggestion
+    set fish_color_command 81a1c1 # #81a1c1 binary command
+    set fish_color_quote a3be8c # #a3be8c text color inside the quote
+    set fish_color_comment a3be8c # #a3be8c comment color
+    set fish_color_valid_path --underline # attribute for a valid path
+    set fish_color_param 88c0d0 # #88c0d0 paremeter color such `--version`
+    set fish_color_cancel bf616a # #bf616a
+    set fish_color_end 81a1c1 # #81a1c1
+    set fish_color_escape 3b4252 # #3b4252 
+    set fish_color_history_current d08770 # #d08770
+    set fish_color_match bf616a # #bf616a
+    set fish_color_normal eceff4 # #eceff4
+    set fish_color_operator b48ead # #b48ead
+    set fish_color_redirection 5e81ac # #5e81ac
+    set fish_color_search_match 81a1c1 # #81a1c1
+    set fish_color_selection white --bold '--background=brblack'
+    set fish_color_status red
+    set fish_pager_color_completion 81a1c1 # #81a1c1
+    set fish_pager_color_description yellow
+    set fish_pager_color_prefix white --bold --underline
+    set fish_pager_color_progress brwhite '--background=cyan'
 
-# window localhost
-#set -gx winhost $hostname.local
+    # Load Fisher plugins
+    for file in ./conf.d/*.fish
+        builtin source $file 2>/dev/null
+    end
 
-# nvm default version
-set -U nvm_default_version lts/iron
+    string match -q "$TERM_PROGRAM" vscode
+    and . (code --locate-shell-integration-path fish)
 
-# fzf default options
-set -gx fzf_preview_dir_cmd "eza -l --color=always --group-directories-first --icons"
-set -gx FZF_DEFAULT_COMMAND 'fd --type file --color=always'
-set -gx FZF_CTRL_T_COMMAND FZF_DEFAULT_COMMAND
-set -gx FZF_DEFAULT_OPTS "
+    if not test "$TERM_PROGRAM" = vscode
+        set -U fish_greeting "Hello World"
+    else
+        set -U fish_greeting ""
+    end
+
+    # nvm default version
+    set -U nvm_default_version lts/iron
+
+    # fzf default options
+    set -gx fzf_preview_dir_cmd "eza -l --color=always --group-directories-first --icons"
+    set -gx FZF_DEFAULT_COMMAND 'fd --type file --color=always'
+    set -gx FZF_CTRL_T_COMMAND FZF_DEFAULT_COMMAND
+    set -gx FZF_DEFAULT_OPTS "
     --ansi
     --cycle --layout=reverse --border --height=90% --preview-window=wrap --marker='*'
 "
 
-set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+    set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
-# bat default options
-set -gx BAT_THEME ansi
+    # bat default options
+    set -gx BAT_THEME ansi
 
-# set LS_COLORS using vivid
-set -gx LS_COLORS (vivid generate nord)
+    # set LS_COLORS using vivid
+    set -gx LS_COLORS (vivid generate nord)
 
-# Aliases
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+    # Aliases
+    alias ..="cd .."
+    alias ...="cd ../.."
+    alias ....="cd ../../.."
 
-# Abbreviation
-abbr -a ff fzf
-abbr -a vf 'vim $(fzf)'
-abbr -a v vim
-abbr -a cc clear
-abbr -a -- g git
-abbr -a -- pn pnpm
-abbr -a -- yr yarn
-abbr -a -- np npm
-abbr -a dk docker
-abbr -a dkc docker-compose
-abbr -a ls 'eza --color=always --group-directories-first --icons' # preferred listing
-abbr -a la "eza -a --color=always --group-directories-first --icons" # all files and dirs
-abbr -a ll 'eza -l --color=always --group-directories-first --icons' # long format
-abbr -a lt 'eza -aT --color=always --group-directories-first --icons' # tree listing
-abbr -a l. "eza -a | grep -E '^\.'" # dotfiles
-abbr -a --position anywhere -- -h '-h 2>&1 | bat --language=help --style=plain' # replace -h with bathelp
-abbr -a --position anywhere -- --help '--help 2>&1 | bat --language=help --style=plain' # replace --help with bathelp
-abbr -a cd z
-abbr -a cdi zi
+    # Abbreviation
+    source $HOME/.config/fish/abbr.fish
 
-# Utilities
-# starship init fish | source
-zoxide init --cmd cd fish | source
+    # Utilities
+    zoxide init --cmd cd fish | source
 
-# Color scheme
-set -U fish_color_error 81a1c1 # #81a1c1 default color when typing suggestion
-set -U fish_color_autosuggestion 6B7280 # #6B7280 suggestion
-set -U fish_color_command 81a1c1 # #81a1c1 binary command
-set -U fish_color_quote a3be8c # #a3be8c text color inside the quote
-set -U fish_color_comment a3be8c # #a3be8c comment color
-set -U fish_color_valid_path --underline # attribute for a valid path
-set -U fish_color_param 88c0d0 # #88c0d0 paremeter color such `--version`
-set -U fish_color_cancel bf616a # #bf616a
-set -U fish_color_end 81a1c1 # #81a1c1
-set -U fish_color_escape 3b4252 # #3b4252 
-set -U fish_color_history_current d08770 # #d08770
-set -U fish_color_match bf616a # #bf616a
-set -U fish_color_normal eceff4 # #eceff4
-set -U fish_color_operator b48ead # #b48ead
-set -U fish_color_redirection 5e81ac # #5e81ac
-set -U fish_color_search_match 81a1c1 # #81a1c1
-set -U fish_color_selection white --bold '--background=brblack'
-set -U fish_color_status red
-set -U fish_pager_color_completion 81a1c1 # #81a1c1
-set -U fish_pager_color_description yellow
-set -U fish_pager_color_prefix white --bold --underline
-set -U fish_pager_color_progress brwhite '--background=cyan'
+    # fzf.fish
+    fzf_configure_bindings --directory=\cf --variables=\e\cv
+    set fzf_diff_highlighter delta
 
-# fzf.fish
-fzf_configure_bindings --directory=\cf --variables=\e\cv
-set fzf_diff_highlighter delta 
-
-# pnpm
-set -gx PNPM_HOME "/home/zachhung/.pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    # pnpm
+    set -gx PNPM_HOME "/home/zachhung/.pnpm"
+    if not string match -q -- $PNPM_HOME $PATH
+        set -gx PATH "$PNPM_HOME" $PATH
+    end
+    # pnpm end
 end
-# pnpm end
