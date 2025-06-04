@@ -33,10 +33,12 @@ if status is-interactive
     string match -q "$TERM_PROGRAM" vscode
     and . (code --locate-shell-integration-path fish)
 
+    set -U fish_greeting ""
+
     if not test "$TERM_PROGRAM" = vscode
-        set -U fish_greeting "Hello World"
+    
     else
-        set -U fish_greeting ""
+
     end
 
     # nvm default version
@@ -49,7 +51,7 @@ if status is-interactive
     set -gx FZF_DEFAULT_OPTS "
     --ansi
     --cycle --layout=reverse --border --height=90% --preview-window=wrap --marker='*'
-"
+    "
 
     set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
@@ -63,6 +65,8 @@ if status is-interactive
     alias ..="cd .."
     alias ...="cd ../.."
     alias ....="cd ../../.."
+    alias java='java.exe'
+    alias javac='javac.exe'
 
     # Abbreviation
     source $HOME/.config/fish/abbr.fish
