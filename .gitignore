@@ -1,2 +1,8 @@
 .config/configstore
 .config/fish/fish_variables
+.config/JetBrains
+.config/tabtab
+.yarnrc
+.DS_Store
+Thumbs.db
+desktop.ini
