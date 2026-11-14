@@ -1,0 +1,61 @@
+// Ryoku-inspired layout (github.com/SourceAura/insei-fetch), coloured from LS_COLORS (vivid generate nord).
+// shortcut: colours are copied, not read live; re-copy if the vivid theme in config.fish changes.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "padding": { "left": 2, "right": 4, "top": 1 },
+    "color": { "1": "#8fbcbb", "2": "#81a1c1" }
+  },
+  "display": {
+    "color": {
+      "keys": "#8fbcbb",
+      "separator": "#81a1c1",
+      "title": "#eceff4"
+    },
+    "key": { "width": 9 },
+    "percent": {
+      "type": 9,
+      "color": { "green": "#a3be8c", "yellow": "#ebcb8b", "red": "#bf616a" }
+    },
+    "separator": "  "
+  },
+  "modules": [
+    "break",
+    {
+      "type": "title",
+      "format": "{#1;title}{user-name}{#}{#separator} @ {#}{#1;title}{host-name}{#}"
+    },
+    {
+      "type": "custom",
+      "format": "{#38;2;143;188;187}■{#} {#38;2;129;161;193}■{#} {#separator}力 · inspired by Ryoku{#}"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "{#38;2;143;188;187}──{#} {#1;title}VITALS{#} {#38;2;76;86;106}──────────────────────────{#}"
+    },
+    { "type": "cpu", "key": "CPU" },
+    { "type": "gpu", "key": "GPU" },
+    { "type": "memory", "key": "MEMORY" },
+    { "type": "disk", "key": "DISK", "folders": "/" },
+    "break",
+    {
+      "type": "custom",
+      "format": "{#38;2;143;188;187}──{#} {#1;title}SYSTEM{#} {#38;2;76;86;106}──────────────────────────{#}"
+    },
+    { "type": "os", "key": "OS" },
+    { "type": "kernel", "key": "KERNEL" },
+    { "type": "shell", "key": "SHELL" },
+    { "type": "packages", "key": "PKGS" },
+    "break",
+    {
+      "type": "custom",
+      "format": "{#38;2;143;188;187}──{#} {#1;title}SESSION{#} {#38;2;76;86;106}─────────────────────────{#}"
+    },
+    { "type": "uptime", "key": "UPTIME" },
+    { "type": "terminal", "key": "TERM" },
+    "break",
+    { "type": "colors", "symbol": "circle", "paddingLeft": 2 },
+    "break"
+  ]
+}
