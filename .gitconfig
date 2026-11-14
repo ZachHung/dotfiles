@@ -1,8 +1,8 @@
 [init]  
 	defaultBranch = main
-[user]
-	email = zachhung911@gmail.com
-	name = ZachHung
+[include]
+	# name/email live here, outside the public repo (install.sh asks for them)
+	path = ~/.gitconfig.local
 [alias]
 	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold cyan){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
 	co = checkout
@@ -53,7 +53,7 @@
 	conflictStyle = zdiff3
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/zachhung/.local/bin/gh auth git-credential
+	helper = !\"$HOME/.local/bin/gh\" auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/zachhung/.local/bin/gh auth git-credential
+	helper = !\"$HOME/.local/bin/gh\" auth git-credential

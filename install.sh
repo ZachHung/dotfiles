@@ -82,8 +82,22 @@ if ! need bun; then
     curl -fsSL https://bun.sh/install | bash
 fi
 
+# fastfetch (not in Ubuntu 24.04's own repos; PPA from the fastfetch README)
+if ! need fastfetch; then
+    sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+    sudo apt-get update -qq && sudo apt-get install -y fastfetch
+fi
+
 # Symlink dotfiles
 stow --restow --target="$HOME" .
+
+# Git identity, kept out of this public repo
+if [ ! -f "$HOME/.gitconfig.local" ]; then
+    read -rp "Git name: " GIT_NAME
+    read -rp "Git email: " GIT_EMAIL
+    git config --file "$HOME/.gitconfig.local" user.name "$GIT_NAME"
+    git config --file "$HOME/.gitconfig.local" user.email "$GIT_EMAIL"
+fi
 
 # Set fish as default shell
 FISH_PATH=$(command -v fish)
