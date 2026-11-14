@@ -25,29 +25,16 @@ if status is-interactive
     set fish_pager_color_prefix white --bold --underline
     set fish_pager_color_progress brwhite '--background=cyan'
 
-    # Load Fisher plugins
-    for file in ./conf.d/*.fish
-        builtin source $file 2>/dev/null
-    end
-
     string match -q "$TERM_PROGRAM" vscode
     and . (code --locate-shell-integration-path fish)
 
     set -U fish_greeting ""
 
-    if not test "$TERM_PROGRAM" = vscode
-    
-    else
-
-    end
-
-    # nvm default version
-    set -U nvm_default_version lts/iron
 
     # fzf default options
     set -gx fzf_preview_dir_cmd "eza -l --color=always --group-directories-first --icons"
     set -gx FZF_DEFAULT_COMMAND 'fd --type file --color=always'
-    set -gx FZF_CTRL_T_COMMAND FZF_DEFAULT_COMMAND
+    set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
     set -gx FZF_DEFAULT_OPTS "
     --ansi
     --cycle --layout=reverse --border --height=90% --preview-window=wrap --marker='*'
@@ -72,6 +59,8 @@ if status is-interactive
     source $HOME/.config/fish/abbr.fish
 
     # Utilities
+    functions --query __zoxide_cd_internal
+    or functions --copy cd __zoxide_cd_internal
     zoxide init --cmd cd fish | source
 
     # fzf.fish
@@ -79,7 +68,7 @@ if status is-interactive
     set fzf_diff_highlighter delta
 
     # pnpm
-    set -gx PNPM_HOME "/home/zachhung/.pnpm"
+    set -gx PNPM_HOME "$HOME/.pnpm"
     if not string match -q -- $PNPM_HOME $PATH
         set -gx PATH "$PNPM_HOME" $PATH
     end

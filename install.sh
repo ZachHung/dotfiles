@@ -66,6 +66,12 @@ if ! need vivid; then
     rm /tmp/vivid.deb
 fi
 
+# fnm (Node version manager) + LTS node
+if ! need fnm && [ ! -x "$HOME/.local/share/fnm/fnm" ]; then
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+fi
+"$HOME/.local/share/fnm/fnm" install --lts
+
 # pnpm
 if ! need pnpm; then
     curl -fsSL https://get.pnpm.io/install.sh | sh -
@@ -76,8 +82,22 @@ if ! need bun; then
     curl -fsSL https://bun.sh/install | bash
 fi
 
+# fastfetch (not in Ubuntu 24.04's own repos; PPA from the fastfetch README)
+if ! need fastfetch; then
+    sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+    sudo apt-get update -qq && sudo apt-get install -y fastfetch
+fi
+
 # Symlink dotfiles
 stow --restow --target="$HOME" .
+
+# Git identity, kept out of this public repo
+if [ ! -f "$HOME/.gitconfig.local" ]; then
+    read -rp "Git name: " GIT_NAME
+    read -rp "Git email: " GIT_EMAIL
+    git config --file "$HOME/.gitconfig.local" user.name "$GIT_NAME"
+    git config --file "$HOME/.gitconfig.local" user.email "$GIT_EMAIL"
+fi
 
 # Set fish as default shell
 FISH_PATH=$(command -v fish)

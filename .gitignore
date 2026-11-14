@@ -6,3 +6,16 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Fisher-managed plugin files: restored by `fisher update` from fish_plugins
+.config/fish/functions/
+.config/fish/completions/
+.config/fish/conf.d/*
+!.config/fish/conf.d/fnm.fish
+
+# Secrets and machine state
+.config/gh/hosts.yml
+.config/turborepo/
+.config/wslu/
+.config/ponytail/
+.config/fontforge/

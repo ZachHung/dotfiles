@@ -1,10 +1,8 @@
-[credential]
-	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe
 [init]  
 	defaultBranch = main
-[user]
-	email = zachhung911@gmail.com
-	name = ZachHung
+[include]
+	# name/email live here, outside the public repo (install.sh asks for them)
+	path = ~/.gitconfig.local
 [alias]
 	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold cyan){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
 	co = checkout
@@ -43,5 +41,19 @@
     line-numbers = true
 	navigate = true
 	dark = true
+	syntax-theme = Nord
+	minus-style = "syntax \"#472F32\""
+	minus-emph-style = "syntax \"#5F393D\""
+	plus-style = "syntax \"#40473A\""
+	plus-emph-style = "syntax \"#545F4B\""
+	line-numbers-minus-style = "\"#BF616A\""
+	line-numbers-plus-style = "\"#A3BE8C\""
+	line-numbers-zero-style = "\"#4C566A\""
 [merge]
 	conflictStyle = zdiff3
+[credential "https://github.com"]
+	helper = 
+	helper = !\"$HOME/.local/bin/gh\" auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !\"$HOME/.local/bin/gh\" auth git-credential

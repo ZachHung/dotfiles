@@ -34,10 +34,12 @@ if [ -n "$winhost" ] && ! grep -qP "\bwinhost\b" /etc/hosts; then
     printf "%s\twinhost\n" "$winhost" | sudo tee -a /etc/hosts > /dev/null
 fi
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# fnm (Node versions)
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+    export PATH="$FNM_PATH:$PATH"
+    eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell bash)"
+fi
 
 # pnpm
 export PNPM_HOME="$HOME/.pnpm"
