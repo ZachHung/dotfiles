@@ -66,6 +66,12 @@ if ! need vivid; then
     rm /tmp/vivid.deb
 fi
 
+# fnm (Node version manager) + LTS node
+if ! need fnm && [ ! -x "$HOME/.local/share/fnm/fnm" ]; then
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+fi
+"$HOME/.local/share/fnm/fnm" install --lts
+
 # pnpm
 if ! need pnpm; then
     curl -fsSL https://get.pnpm.io/install.sh | sh -

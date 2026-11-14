@@ -16,5 +16,3 @@ abbr -a lt 'eza -aT --color=always --group-directories-first --icons' # tree lis
 abbr -a l. "eza -a | grep -E '^\.'" # dotfiles
 abbr -a --position anywhere -- -h '-h 2>&1 | bat --language=help --style=plain' # replace -h with bathelp
 abbr -a --position anywhere -- --help '--help 2>&1 | bat --language=help --style=plain' # replace --help with bathelp
-abbr -a cd z
-abbr -a cdi zi

@@ -7,7 +7,6 @@ Personal dotfiles for a WSL2/Ubuntu environment, managed with [GNU Stow](https:/
 | Tool | Purpose |
 | --- | --- |
 | [fish](https://fishshell.com) | Primary shell |
-| [Starship](https://starship.rs) | Prompt (backup) |
 | [Tide](https://github.com/IlanCosman/tide) | Fish prompt |
 | [delta](https://github.com/dandavison/delta) | Git pager |
 | [eza](https://github.com/eza-community/eza) | `ls` replacement |
